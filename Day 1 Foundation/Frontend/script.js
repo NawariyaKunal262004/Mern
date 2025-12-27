@@ -3,7 +3,7 @@ document.getElementById("btn").addEventListener("click", async () => {
   output.innerText = "Calling backend...";
 
   try {
-    const res = await fetch("http://localhost:5000/api/test");
+    const res = await fetch("https://day1-backend.onrender.com/api/test");
     const data = await res.json();
     output.innerText = JSON.stringify(data, null, 2);
   } catch (err) {
