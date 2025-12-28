@@ -2,6 +2,11 @@ require("dotenv").config();
 console.log("SERVER FILE LOADED");
 const express = require("express");
 const cors = require("cors");
+const app = express();
+
+console.log("SERVER FILE LOADED");
+
+
 app.use(cors({
   origin: [
     "http://localhost:5173",
@@ -11,21 +16,24 @@ app.use(cors({
   credentials: true
 }));
 
-const app = express();
+
 
 app.use(express.json());
  // INTENTIONALLY SIMPLE FOR NOW
+
+ const testRoutes = require("./routes/test.routes");
+ console.log("loaded test routes");
+
+
+app.use("/api", testRoutes);
+
 
 app.get("/", (req, res) => {
   res.send("Backend root working");
 });
 
 
-const testRoutes = require("./routes/test.routes");
 
-// console.log("About to load test routes");
-
-app.use("/api", testRoutes);
 
 app.get("/api/health", (req, res) => {
   res.json({ status: "API alive" });
