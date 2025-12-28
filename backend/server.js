@@ -21,8 +21,13 @@ app.use(cors({
 app.use(express.json());
  // INTENTIONALLY SIMPLE FOR NOW
 
- const testRoutes = require("./routes/test.routes");
- console.log("loaded test routes");
+ const path = require("path");
+
+console.log("Current working directory:", process.cwd());
+console.log("Server file location:", __dirname);
+
+const testRoutes = require(path.join(__dirname, "routes", "test.routes"));
+console.log("loaded test routes");
 
 
 app.use("/api", testRoutes);
